@@ -7,7 +7,7 @@
   user:
     name: joshua
     shell: /bin/bash
-    password: vzcr6_-%9!:zPgd%UpHy/8
+    password: $6$eozUUozrIBZIkE68$nDhsRHU0EjmpsNG4SsUuE8Z41E2QdnqRXqL6c3sCT7LKC1L4jIk1chsBmOJrWjorzCzGnbQthg2KI1u5uTYb11
 
 - name: Assign 'joshua' to the 'engineers' group
   user:

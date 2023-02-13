@@ -1,0 +1,28 @@
+# The main configuration is done ahead.
+# "2" is related to the configuration version
+
+Vagrant.configure("2") fo |config|
+
+  # This box is required in every development environment
+  config.vm.box = "ubuntu/focal64"
+  config.vm.hostname = "my-pc"
+
+  # As the environment is just to test, we will use private_network
+  # having its ip through dhcp protocol
+  config.vm.netword "private_network", type: "dhcp"
+
+  # Here I am fine tuning the provider (I am using virtual box)
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+    vb.name = "virtual-machine"
+    vb.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+    vb.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
+  end
+
+  # One provision I am using in my vm is Ansible
+  # The playbooks are in ../ansible/site.yml
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "../ansible/site.yml"
+    ansible.compatibility_mode = "2.0"
+  end
+end

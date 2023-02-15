@@ -1,0 +1,5 @@
+- name: Set authorized key file from local server
+  authorized_key:
+    user: joshua
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/tstansible.pub') }}"
